@@ -1,0 +1,35 @@
+.companies {
+  width: 100vw;
+  height: max-content;
+  margin: 2rem 0;
+
+  &__container {
+    width: 1430px;
+    padding: 0 40px;
+    margin: 0 auto;
+
+    .companies__title {
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 15pt;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .companies__icon {
+      display: grid;
+      grid-template-columns: repeat(6,fit-content(112px));
+      grid-gap: 16px 36px;
+      justify-content: space-between;
+
+      & img {
+        filter: grayscale(100%);
+        transition: filter 1s ease;
+      }
+
+      & img:hover {
+        filter: none;
+        transition: filter 1s ease;
+      }
+    }
+  }
+}

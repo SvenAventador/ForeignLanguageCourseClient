@@ -1,0 +1,102 @@
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 2rem;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, .5);
+
+  &__container {
+    width: 1430px;
+    padding: 0 40px;
+    margin: 0 auto;
+
+    .footer-contacts {
+      @include flex-all-sb;
+      border-bottom: 2px solid var(--gray);
+      padding-bottom: 1rem;
+
+      &__left {
+        .footer-contacts__phone {
+          &-item {
+            @include flex-column-center;
+            color: var(--white);
+            font-family: 'Comic Sans MS', sans-serif;
+            font-size: 10pt;
+            font-style: normal;
+            transition: .5s ease-in-out;
+
+            & a:hover {
+              color: #006e6e;
+              transition: .5s ease-in-out;
+            }
+          }
+
+          &-item:first-child {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+
+      &__right {
+        @include flex-column-center;
+
+        & p {
+          font-size: 10pt;
+          font-family: 'Comic Sans MS', sans-serif;
+          color: white;
+          margin-bottom: .5rem;
+          font-style: normal;
+        }
+
+        & a {
+          font-size: 10pt;
+          font-family: 'Comic Sans MS', sans-serif;
+          color: white;
+          font-style: normal;
+          transition: .5s ease-in-out;
+        }
+
+        & a:hover {
+          color: #006e6e;
+          transition: .5s ease-in-out;
+        }
+      }
+    }
+
+    .footer__about {
+
+      & p {
+        font-family: 'Comic Sans MS', sans-serif;
+        font-size: 10pt;
+        color: var(--white);
+      }
+
+      & p:first-child {
+        padding-top: 1rem;
+
+        & span {
+          text-decoration: underline;
+        }
+      }
+
+      & p:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .footer__copy {
+      margin-top: 1rem;
+
+      & span {
+        font-family: 'Comic Sans MS', sans-serif;
+        font-size: 10pt;
+        color: var(--white);
+      }
+
+      & span:first-child {
+        margin-right: 1.5rem;
+      }
+    }
+  }
+}

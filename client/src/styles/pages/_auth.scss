@@ -1,0 +1,87 @@
+.auth {
+  @include flex-column-center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../assets/background.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  &__form {
+    @include flex-column-center;
+    padding: 5rem 5rem;
+    background: rgba(255, 255, 255, .9);
+    border-radius: 3rem;
+
+    &--title {
+      text-transform: uppercase;
+      font-size: 15pt;
+      font-family: 'Comic Sans MS', sans-serif;
+      color: #006e6e;
+      margin-bottom: 1rem;
+    }
+
+    &--field {
+      position: relative;
+    }
+
+    &--field:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    &--field input {
+      width: 350px;
+      height: 60px;
+      padding: 0 15px;
+      border: none;
+      border-bottom: 2px solid var(--black);
+      background: transparent;
+      color: var(--black);
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 13pt;
+      outline: none;
+    }
+
+    &--field input:focus ~ label,
+    &--field input:valid ~ label {
+      top: 0;
+      left: 15px;
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 13pt;
+      padding: 0 2px;
+      background: transparent;
+      z-index: 1000;
+    }
+
+    &--field label {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: #000;
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 13pt;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    &--submit {
+      width: 100%;
+      padding: 1.4rem;
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 18pt;
+      color: var(--white);
+      border-radius: 1.5rem;
+      background-color: #006e6e;
+      margin-bottom: 1rem;
+    }
+    &--link {
+      font-size: 15pt;
+      font-family: 'Comic Sans MS', sans-serif;
+
+      & span {
+        color: #006e6e;
+      }
+    }
+  }
+}

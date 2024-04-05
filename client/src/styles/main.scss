@@ -1,0 +1,16 @@
+@import "./func/mixins";
+
+@import "globals";
+@import "overalls";
+@import "vars";
+@import "vendors";
+
+@import "./pages/auth";
+
+@import "./components/global/header";
+@import "./components/global/footer";
+@import "./components/main/about";
+@import "./components/main/result";
+@import "./components/main/companies";
+@import "./components/course/courseItem";
+@import "./components/course/courseList";

@@ -1,0 +1,58 @@
+.about {
+  width: 100vw;
+
+  &__container {
+    width: 1430px;
+    padding: 0 40px;
+    margin: 0 auto;
+    @include flex-column-start;
+
+    .about-top {
+      @include flex-all-sb;
+
+      & h2 {
+        font-family: 'Comic Sans MS', sans-serif;
+        font-size: 35pt;
+        width: 40%;
+      }
+
+      & img {
+        width: 400px;
+        height: 400px;
+      }
+    }
+
+    .about-center {
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 20pt;
+      width: 60%;
+    }
+
+    .about-bottom {
+      @include flex-row-center;
+      margin-top: 2rem;
+
+      &__help {
+        & div:first-child {
+          font-family: 'Comic Sans MS', sans-serif;
+          font-size: 20pt;
+          padding-bottom: 1rem;
+        }
+
+        & p {
+          font-family: 'Comic Sans MS', sans-serif;
+          font-size: 15pt;
+          margin-top: 1rem;
+          margin-bottom: .5rem;
+        }
+
+        & div:last-child {
+          font-family: 'Comic Sans MS', sans-serif;
+          font-size: 13pt;
+          color: var(--gray);
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

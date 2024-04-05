@@ -1,0 +1,52 @@
+.result {
+  margin-top: 3rem;
+  width: 100vw;
+  height: max-content;
+
+  &__container {
+    width: 1430px;
+    padding: 0 40px;
+    margin: 0 auto;
+
+    & h2 {
+      font-size: 25pt;
+      font-family: 'Comic Sans MS', sans-serif;
+      font-style: normal;
+    }
+
+    .result__component {
+      display: flex;
+      flex-flow: row nowrap;
+
+      & div {
+        & p {
+          text-align: justify-all;
+          font-family: 'Comic Sans MS', sans-serif;
+          font-size: 12pt;
+        }
+      }
+
+      & div:first-child {
+        & p:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+      }
+
+      & h3 {
+        font-size: 17pt;
+        font-family: 'Comic Sans MS', sans-serif;
+        margin: 1rem 0;
+      }
+    }
+
+    .result__diploma {
+      @include flex-column-center;
+      margin: 1.5rem 0;
+
+      & p {
+        font-family: 'Comic Sans MS', sans-serif;
+        font-size: 14pt;
+      }
+    }
+  }
+}

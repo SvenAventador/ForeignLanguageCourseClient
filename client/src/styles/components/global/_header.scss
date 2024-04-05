@@ -1,0 +1,65 @@
+.header {
+  width: 100vw;
+  height: max-content;
+  background-color: rgba(0, 0, 0, .5);
+  padding: .5rem 0;
+
+  &__container {
+    @include flex-all-sb;
+    width: 1430px;
+    padding: 0 40px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    @include flex-row-center;
+    font-family: Vivaldi, sans-serif;
+    font-size: 20pt;
+    color: var(--white);
+    text-transform: capitalize;
+  }
+
+  &__navigation {
+    .navigation__list {
+      @include flex-all-sb;
+
+      .navigation__item {
+        .navigation__link {
+          font-family: 'Comic Sans MS', sans-serif;
+          color: var(--white);
+          font-size: 10pt;
+          text-transform: uppercase;
+          transition: .5s ease-in-out;
+
+          &:hover {
+            color: #006e6e;
+            transition: .5s ease-in-out;
+          }
+        }
+      }
+
+      .navigation__item:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__user {
+    @include flex-column-center;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+
+    & :last-child {
+      text-transform: uppercase;
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 10pt;
+      color: var(--white);
+      transition: .5s ease-in-out;
+    }
+
+    & :first-child:hover {
+      stroke: #006e6e;
+      transition: .5s ease-in-out;
+    }
+  }
+}
