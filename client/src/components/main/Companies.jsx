@@ -87,7 +87,6 @@ const Companies = () => {
                 </div>
                 <div className="companies__icon">
                     {companiesData.map((company, index) => {
-                        console.log(company)
                         return (
                             <NavLink key={index} to={company.link} target="_blank" rel="noopener noreferrer">
                                 <img src={company.src} alt={company.alt}/>

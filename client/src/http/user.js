@@ -6,7 +6,7 @@ const {
 } = require('./index')
 
 export const registration = async (userNickname, userEmail, userPassword) => {
-    const {data} = await $host.post('/user/registration', {
+    const {data} = await $host.post('api/user/registration', {
         userNickname,
         userEmail,
         userPassword
@@ -15,7 +15,7 @@ export const registration = async (userNickname, userEmail, userPassword) => {
     return jwtDecode(data.token)
 }
 export const login = async (userEmail, userPassword) => {
-    const {data} = await $host.post('/user/login', {
+    const {data} = await $host.post('api/user/login', {
         userEmail,
         userPassword
     })
@@ -24,13 +24,13 @@ export const login = async (userEmail, userPassword) => {
 }
 
 export const check = async () => {
-    const {data} = await $authHost.get('/user/auth')
+    const {data} = await $authHost.get('api/user/auth')
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 }
 
 export const logout = async () => {
-    const {data} = await $authHost.get('/user/logout')
+    const {data} = await $authHost.get('api/user/logout')
     localStorage.removeItem('token')
     return data
 }

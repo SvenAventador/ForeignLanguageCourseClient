@@ -38,9 +38,7 @@ const App = () => {
     }
 
     return (
-        <main className="main">
-            <SiteNavigation />
-        </main>
+        <SiteNavigation/>
     );
 };
 

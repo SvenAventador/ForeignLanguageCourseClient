@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Duration = () => {
+const Chapter = () => {
     return (
         <div>
-            
+            Chapter
         </div>
     );
 };
 
-export default Duration;
+export default Chapter;

@@ -1,0 +1,55 @@
+.sorting {
+  width: 310px; /* Ширина формы */
+  height: max-content;
+  border: 5px solid #cccccc;
+  margin-top: 1rem;
+  border-radius: 10px;
+
+  &__title {
+    width: 300px  ;
+    font-family: 'Comic Sans MS', sans-serif;
+    font-size: 20pt;
+    border-bottom: 2px solid #cccccc;
+    padding: 1rem;
+  }
+
+  &__list {
+    max-width: 300px;
+    overflow: hidden;
+  }
+
+  &__list--item p {
+    width: 100%;
+    padding: 0.2rem 1rem;
+    font-size: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__list--item:not(:last-child) {
+    border-bottom: 2px solid #cccccc;
+  }
+
+  &__btn {
+    width: 300px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}

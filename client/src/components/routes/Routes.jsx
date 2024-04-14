@@ -4,30 +4,32 @@ import {
     Route,
     Routes
 } from "react-router-dom";
-
-import Auth from "../../pages/Auth";
-import Main from "../../pages/Main";
-
 import {
     MAIN_PATH,
     REGISTRATION_PATH,
     LOGIN_PATH,
     PERSONAL_PATH,
     COURSES_PATH,
-    CURRENT_COURSE_PATH
+    CURRENT_COURSE_PATH,
+    CHAPTER_PATH
 } from "../../utils/consts";
 import Header from "../global/Header";
 import FooterComponent from "../global/Footer";
-import {useUser} from "../../stores/UserStore";
+import Auth from "../../pages/Auth";
+import Main from "../../pages/Main";
 import PersonalAccount from "../../pages/user/PersonalAccount";
 import Courses from "../../pages/Courses";
-import Course from "../../pages/Course";
+import Course from "../../pages/user/Course";
+import Chapter from "../../pages/user/Chapter";
+import {useUser} from "../../stores/UserStore";
 
 const Layout = ({children}) => {
     return (
         <>
             <Header/>
-            {children}
+            <main className="main">
+                {children}
+            </main>
             <FooterComponent/>
         </>
     );
@@ -59,9 +61,23 @@ const SiteNavigation = () => {
                                <Course/>
                            </Layout>
                        }/>
+                <Route path={CHAPTER_PATH + '/:id'}
+                       element={
+                           <Layout>
+                               <Chapter/>
+                           </Layout>
+                       }/>
 
-                <Route path={REGISTRATION_PATH} element={<Auth/>}/>
-                <Route path={LOGIN_PATH} element={<Auth/>}/>
+                <Route path={REGISTRATION_PATH} element={
+                    <main className="main">
+                        <Auth/>
+                    </main>
+                }/>
+                <Route path={LOGIN_PATH} element={
+                    <main className="main">
+                        <Auth/>
+                    </main>
+                }/>
 
                 <Route path={PERSONAL_PATH + '/:id'}
                        element={
@@ -71,7 +87,9 @@ const SiteNavigation = () => {
                                    <PersonalAccount/>
                                </Layout>
                                :
-                               <Main/>
+                               <Layout>
+                                   <Main/>
+                               </Layout>
                        }/>
             </Routes>
         </BrowserRouter>
