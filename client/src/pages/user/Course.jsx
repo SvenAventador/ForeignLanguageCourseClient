@@ -18,7 +18,6 @@ const Course = () => {
         setTimeout(() => {
             getOne(id).then(({course}) => {
                 setOneCourse(course)
-                console.log(course)
             }).then(() => {
                 setIsLoading(false)
             })

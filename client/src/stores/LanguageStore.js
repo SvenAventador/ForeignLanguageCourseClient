@@ -1,11 +1,7 @@
 import {create as zustandCreate} from 'zustand';
 import {
     getOne,
-    getAll,
-    create,
-    update,
-    deleteOne,
-    deleteAll,
+    getAll
 } from '../http/language';
 
 export const useLanguage = zustandCreate((set) => ({

@@ -8,10 +8,7 @@ const CourseItem = ({course}) => {
     const navigate = useNavigate();
 
     return (
-        <div className="course-item"
-             onClick={() => {
-                 navigate(`${CURRENT_COURSE_PATH}/${course.id}`)
-             }}>
+        <div className="course-item">
             <img className="course-item__image"
                  src={`${process.env.REACT_APP_API_PATH}/${course.courseImage}`}
                  alt="Course Thumbnail"/>
@@ -22,6 +19,12 @@ const CourseItem = ({course}) => {
                         setModalActive(true)
                     }}>
                 Подробнее о курсе
+            </button>
+            <button className="btn-reset course-item__btn"
+                    onClick={() => {
+                        navigate(`${CURRENT_COURSE_PATH}/${course.id}`)
+                    }}>
+                Записаться на курс
             </button>
             <ModalComponent active={modalActive} setActive={setModalActive}>
                 <p className="course-info__header">Информация о курсе</p>

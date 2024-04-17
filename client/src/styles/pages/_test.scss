@@ -1,0 +1,39 @@
+.test {
+  &__container {
+    width: 1430px;
+    padding: 0 40px;
+    margin: 1.5rem auto;
+  }
+
+  &__name {
+    text-align: center;
+    font-family: 'Comic Sans MS', sans-serif;
+    font-size: 30pt;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  &__question {
+    margin-bottom: 20px;
+
+    &-text {
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 25pt;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__answer {
+    margin-bottom: .5rem;
+
+    &-input {
+      margin-right: 1rem;
+    }
+
+    &-label {
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 17pt;
+      font-weight: normal;
+    }
+  }
+}

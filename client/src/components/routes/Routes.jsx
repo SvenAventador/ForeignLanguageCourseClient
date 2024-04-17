@@ -11,7 +11,7 @@ import {
     PERSONAL_PATH,
     COURSES_PATH,
     CURRENT_COURSE_PATH,
-    CHAPTER_PATH
+    CHAPTER_PATH, TEST_PATH
 } from "../../utils/consts";
 import Header from "../global/Header";
 import FooterComponent from "../global/Footer";
@@ -22,6 +22,7 @@ import Courses from "../../pages/Courses";
 import Course from "../../pages/user/Course";
 import Chapter from "../../pages/user/Chapter";
 import {useUser} from "../../stores/UserStore";
+import Test from "../../pages/user/Test";
 
 const Layout = ({children}) => {
     return (
@@ -65,6 +66,12 @@ const SiteNavigation = () => {
                        element={
                            <Layout>
                                <Chapter/>
+                           </Layout>
+                       }/>
+                <Route path={TEST_PATH + '/:id'}
+                       element={
+                           <Layout>
+                               <Test/>
                            </Layout>
                        }/>
 

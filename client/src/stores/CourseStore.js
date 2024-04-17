@@ -3,9 +3,7 @@ import {
     getOne,
     getAll,
     create,
-    update,
-    deleteOne,
-    deleteAll,
+    update
 } from '../http/course';
 
 export const useCourse = zustandCreate((set) => ({

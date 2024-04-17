@@ -5,8 +5,7 @@ const Language = () => {
     const [languageList, setLanguageList] = React.useState([])
     let {
         getOne,
-        getAll,
-        currentLanguage
+        getAll
     } = useLanguage()
 
     React.useEffect(() => {
@@ -32,8 +31,7 @@ const Language = () => {
                         }}>Пустоватенько...</h2>
                     )}
             </ul>
-            <button className="sorting__btn btn-reset"
-                onClick={() => currentLanguage = null}>
+            <button className="sorting__btn btn-reset">
                 Очистить выборку
             </button>
         </div>
