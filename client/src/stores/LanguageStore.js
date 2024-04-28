@@ -1,7 +1,9 @@
 import {create as zustandCreate} from 'zustand';
 import {
+    create,
+    getAll,
     getOne,
-    getAll
+    update
 } from '../http/language';
 
 export const useLanguage = zustandCreate((set) => ({
@@ -9,6 +11,14 @@ export const useLanguage = zustandCreate((set) => ({
     allLanguage: null,
     error: null,
     message: null,
+
+    setCurrentLanguage: (language) => {
+        set({
+            currentLanguage: language,
+            error: null,
+            message: null
+        })
+    },
 
     getOne: async (id) => {
         const data = await getOne(id)
@@ -28,5 +38,47 @@ export const useLanguage = zustandCreate((set) => ({
             message: null
         })
         return data
+    },
+
+    create: async (languageName) => {
+        try {
+            const data = await create(languageName)
+            set({
+                currentLanguage: data
+            })
+            return data
+        } catch (error) {
+            set({
+                currentLanguage: null,
+                allLanguage: null,
+                error: error.response.data.message,
+                message: null
+            });
+            throw error
+        }
+    },
+
+    update: async (id, languageName) => {
+        try {
+            const data = update(id, languageName)
+            set({
+                currentLanguage: data
+            })
+            return data
+        } catch (error) {
+            let errorMessage = 'Произошла ошибка при обновлении языка. Пожалуйста, попробуйте еще раз.';
+            if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
+                const errors = error.response.data.message.errors;
+                errorMessage = errors.map(err => err.msg).join('\n');
+            }
+
+            set({
+                currentLanguage: null,
+                allLanguage: null,
+                error: errorMessage,
+                message: null
+            });
+            throw errorMessage
+        }
     }
 }))

@@ -11,36 +11,36 @@ import {
     PERSONAL_PATH,
     COURSES_PATH,
     CURRENT_COURSE_PATH,
-    CHAPTER_PATH, TEST_PATH
+    CHAPTER_PATH,
+    TEST_PATH,
+    ADMIN_PATH
 } from "../../utils/consts";
 import Header from "../global/Header";
-import FooterComponent from "../global/Footer";
+import Footer from "../global/Footer";
 import Auth from "../../pages/Auth";
 import Main from "../../pages/Main";
 import PersonalAccount from "../../pages/user/PersonalAccount";
 import Courses from "../../pages/Courses";
 import Course from "../../pages/user/Course";
 import Chapter from "../../pages/user/Chapter";
-import {useUser} from "../../stores/UserStore";
 import Test from "../../pages/user/Test";
+import AdminPanel from "../../pages/admin/AdminPanel";
 
 const Layout = ({children}) => {
     return (
         <>
             <Header/>
-            <main className="main">
-                {children}
-            </main>
-            <FooterComponent/>
+            <div className="content-wrapper">
+                <main className="main">
+                    {children}
+                </main>
+            </div>
+            <Footer/>
         </>
     );
 };
 
 const SiteNavigation = () => {
-    const {
-        user
-    } = useUser()
-
     return (
         <BrowserRouter>
             <Routes>
@@ -75,28 +75,30 @@ const SiteNavigation = () => {
                            </Layout>
                        }/>
 
-                <Route path={REGISTRATION_PATH} element={
-                    <main className="main">
-                        <Auth/>
-                    </main>
-                }/>
-                <Route path={LOGIN_PATH} element={
-                    <main className="main">
-                        <Auth/>
-                    </main>
-                }/>
+                <Route path={REGISTRATION_PATH}
+                       element={
+                           <main className="main">
+                               <Auth/>
+                           </main>
+                       }/>
+                <Route path={LOGIN_PATH}
+                       element={
+                           <main className="main">
+                               <Auth/>
+                           </main>
+                       }/>
+                <Route path={ADMIN_PATH}
+                       element={
+                           <main className="main">
+                               <AdminPanel/>
+                           </main>
+                       }/>
 
                 <Route path={PERSONAL_PATH + '/:id'}
                        element={
-                           user && user.userRole === 'USER'
-                               ?
-                               <Layout>
-                                   <PersonalAccount/>
-                               </Layout>
-                               :
-                               <Layout>
-                                   <Main/>
-                               </Layout>
+                           <Layout>
+                               <PersonalAccount/>
+                           </Layout>
                        }/>
             </Routes>
         </BrowserRouter>

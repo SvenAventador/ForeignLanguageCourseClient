@@ -36,4 +36,19 @@
       font-weight: normal;
     }
   }
+
+  &__btn {
+    padding: 1.5rem;
+    background-color: #0056b3;
+    border-radius: 30px;
+    color: #FFFFFF;
+    transition: .3s background-color ease-in-out;
+    width: 100%;
+  }
+
+
+  &__btn:hover {
+    background-color: #007bff;
+    transition: .3s background-color ease-in-out;
+  }
 }

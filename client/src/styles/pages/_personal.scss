@@ -1,0 +1,9 @@
+.personal {
+  &__container {
+    width: 1430px;
+    padding: 0 40px;
+    margin: 1.5rem auto;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}

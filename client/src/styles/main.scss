@@ -10,6 +10,7 @@
 @import "./pages/course";
 @import "./pages/chapter";
 @import "./pages/test";
+@import "./pages/personal";
 
 @import "./components/global/header";
 @import "./components/global/footer";
@@ -20,3 +21,4 @@
 @import "./components/course/courseItem";
 @import "./components/course/courseList";
 @import "./components/course/sort/sorting";
+@import "./components/personal/updateData";

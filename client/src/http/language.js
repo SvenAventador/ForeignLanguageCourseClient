@@ -14,21 +14,11 @@ export const getAll = async () => {
 }
 
 export const create = async (languageName) => {
-    const {data} = $authHost.post('api/language', {languageName})
+    const {data} = await $authHost.post('api/language', {languageName})
     return data
 }
 
 export const update = async (id, languageName) => {
-    const {data} = $authHost.put(`api/language?id=${id}`, {languageName})
-    return data
-}
-
-export const deleteOne = async (id) => {
-    const {data} = $authHost.delete(`api/language/one?id=${id}`)
-    return data
-}
-
-export const deleteAll = async () => {
-    const {data} = $authHost.delete('api/language/')
+    const {data} = await $authHost.put(`api/language?id=${id}`, {languageName})
     return data
 }

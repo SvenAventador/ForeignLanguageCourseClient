@@ -1,5 +1,8 @@
 import React from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {
+    useNavigate,
+    useParams
+} from "react-router-dom";
 import {getOne} from "../../http/chapter";
 import ChapterVideo from "../../components/carousel/ChapterVideo";
 import {TEST_PATH} from "../../utils/consts";

@@ -40,6 +40,8 @@ export const useCourse = zustandCreate((set) => ({
                 error: null,
                 message: null
             })
+
+            return data
         } catch (error) {
             let errorMessage = 'Произошла ошибка при добавлении курса. Пожалуйста, попробуйте еще раз.';
             if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
@@ -64,6 +66,8 @@ export const useCourse = zustandCreate((set) => ({
                 error: null,
                 message: null
             })
+
+            return data
         } catch (error) {
             let errorMessage = 'Произошла ошибка при обновлении курса. Пожалуйста, попробуйте еще раз.';
             if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {

@@ -5,6 +5,7 @@ import {
     useNavigate
 } from "react-router-dom";
 import {
+    ADMIN_PATH,
     LOGIN_PATH,
     MAIN_PATH,
     REGISTRATION_PATH
@@ -39,9 +40,15 @@ const Auth = () => {
                 })
             })
             .catch((error) => {
+                let errorMessage = 'Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз.';
+                if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
+                    const errors = error.response.data.message.errors;
+                    errorMessage = errors.map(err => err.msg).join('\n');
+                }
+
                 return Swal.fire({
                     title: 'Опачки!',
-                    text: error,
+                    text: errorMessage,
                     icon: 'error'
                 });
             });
@@ -50,19 +57,23 @@ const Auth = () => {
     const login = (event) => {
         event.preventDefault()
         loginUser(userEmail, userPassword)
-            .then(() => {
-                Swal.fire({
-                    title: 'Ваушки!',
-                    text: 'Добро пожаловать, друг 🥰',
-                    icon: 'success'
-                }).then(() => {
-                    navigate(MAIN_PATH);
-                })
-            })
-            .catch((error) => {
+            .then((data) => {
+                navigate(data.userRole === 'USER' ? MAIN_PATH : ADMIN_PATH)
                 return Swal.fire({
                     title: 'Опачки!',
-                    text: error,
+                    text: 'Рады видеть Вас 🥰',
+                    icon: 'success'
+                });
+            })
+            .catch((error) => {
+                let errorMessage = 'Произошла ошибка при авторизации. Пожалуйста, попробуйте еще раз.';
+                if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
+                    const errors = error.response.data.message.errors;
+                    errorMessage = errors.map(err => err.msg).join('\n');
+                }
+                return Swal.fire({
+                    title: 'Опачки!',
+                    text: errorMessage,
                     icon: 'error'
                 });
             });
@@ -70,7 +81,8 @@ const Auth = () => {
 
     return (
         <section className="auth">
-            <form className="auth__form" onSubmit={registration}>
+            <form className="auth__form"
+                  onSubmit={registration}>
                 <div className="auth__form--title">
                     <h1>{location ? 'Авторизация' : 'Регистрация'}</h1>
                 </div>
