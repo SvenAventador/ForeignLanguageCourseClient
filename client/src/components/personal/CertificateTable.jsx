@@ -6,6 +6,7 @@ import {Table} from "antd";
 
 const MyComponent = ({id}) => {
     const [certificates, setCertificates] = React.useState([])
+
     React.useEffect(() => {
         getAllCertificates(id).then(({certificates}) => {
             setCertificates(certificates)
@@ -60,7 +61,7 @@ const MyComponent = ({id}) => {
                columns={certificateColumn}
                dataSource={certificates.map((certificate) => ({...certificate, key: certificate.id}))}
         />
-    );
-};
+    )
+}
 
-export default MyComponent;
+export default MyComponent

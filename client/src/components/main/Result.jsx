@@ -5,8 +5,9 @@ const Result = () => {
     return (
         <section className="result">
             <div className="result__container">
-                <h2>Результаты после обучения</h2>
-
+                <h2>
+                    Результаты после обучения
+                </h2>
                 <div className="result__component">
                     <div>
                         <h3>Фундамент для карьерного роста</h3>
@@ -41,7 +42,7 @@ const Result = () => {
                 </div>
             </div>
         </section>
-    );
-};
+    )
+}
 
-export default Result;
+export default Result

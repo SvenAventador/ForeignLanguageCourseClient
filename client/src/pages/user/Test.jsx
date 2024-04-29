@@ -9,20 +9,20 @@ import Swal from "sweetalert2";
 import {createTest} from "../../http/userTest";
 import {useUser} from "../../stores/UserStore";
 import {CURRENT_COURSE_PATH} from "../../utils/consts";
-import {useCourse} from "../../stores/CourseStore";
 
 const Test = () => {
-    const {id} = useParams();
+    const {id} = useParams()
+
     const [test, setTest] = React.useState({})
     const [answers, setAnswers] = React.useState({})
     const [chapter, setChapter] = React.useState({})
+
     const {user} = useUser()
-    const {currentCourse} = useCourse()
     const navigate = useNavigate()
+
     React.useEffect(() => {
         getOne(id).then(({test}) => {
             setTest(test);
-
             test && getOneChapter(test.courseContentId).then(({chapter}) => {
                 setChapter(chapter)
             })
@@ -46,7 +46,7 @@ const Test = () => {
                 title: 'Опачки...',
                 text: 'Пожалуйста, ответь на все вопросы. Ты умника и обязательно справишься💝',
                 icon: 'error'
-            });
+            })
             return;
         }
 
@@ -57,7 +57,6 @@ const Test = () => {
         })
 
         createTest(+totalScore, +test.id, +user.id).then((data) => {
-            console.log(data)
             if (data.candidate) {
                 Swal.fire({
                     title: data.candidate.isComplete
@@ -107,24 +106,30 @@ const Test = () => {
             <div className="test__container">
                 {test && Object.keys(test).length > 0 ? (
                     <>
-                        <h2 className="test__name">{test.testName}</h2>
+                        <h2 className="test__name">
+                            {test.testName}
+                        </h2>
                         {test.test_questions && test.test_questions.map((question) => (
-                            <div className="test__question" key={question.id}>
-                                <p className="test__question-text">{question.question}</p>
+                            <div className="test__question"
+                                 key={question.id}>
+                                <p className="test__question-text">
+                                    {question.question}
+                                </p>
                                 {question.test_answers && question.test_answers.map((answer) => (
                                     <div key={answer.id}>
-                                        <input
-                                            type="radio"
-                                            name={`answer${question.id}`}
-                                            value={answer.answer}
-                                            onChange={() => handleAnswerChange(question.id, answer.answer)}
-                                        />
-                                        <label className="test__answer-label">{answer.answer}</label>
+                                        <input type="radio"
+                                               name={`answer${question.id}`}
+                                               value={answer.answer}
+                                               onChange={() => handleAnswerChange(question.id, answer.answer)}/>
+                                        <label className="test__answer-label">
+                                            {answer.answer}
+                                        </label>
                                     </div>
                                 ))}
                             </div>
                         ))}
-                        <button className="btn-reset test__btn" onClick={handleSubmit}>
+                        <button className="btn-reset test__btn"
+                                onClick={handleSubmit}>
                             Проверить результат
                         </button>
                     </>
@@ -132,11 +137,13 @@ const Test = () => {
                     <p style={{
                         fontSize: '20pt',
                         fontFamily: 'Comic Sans MS'
-                    }}>Извините, на данный момент, нет теста к главе. Наша команда со всем разберется🥰🥰🥰</p>
+                    }}>
+                        Извините, на данный момент, нет теста к главе. Наша команда со всем разберется🥰🥰🥰
+                    </p>
                 )}
             </div>
         </section>
-    );
-};
+    )
+}
 
-export default Test;
+export default Test

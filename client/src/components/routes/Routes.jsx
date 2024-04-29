@@ -37,8 +37,8 @@ const Layout = ({children}) => {
             </div>
             <Footer/>
         </>
-    );
-};
+    )
+}
 
 const SiteNavigation = () => {
     return (

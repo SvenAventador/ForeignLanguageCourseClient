@@ -44,8 +44,11 @@ const Course = () => {
                 <div className="course-content__left">
                     {oneCourse && (
                         <>
-                            <img src={`${process.env.REACT_APP_API_PATH}/${oneCourse.courseImage}`} alt="course card"/>
-                            <p>Название курса: {oneCourse.courseName}</p>
+                            <img src={`${process.env.REACT_APP_API_PATH}/${oneCourse.courseImage}`}
+                                 alt="course card"/>
+                            <p>
+                                Название курса: {oneCourse.courseName}
+                            </p>
                         </>
                     )}
                 </div>
@@ -53,7 +56,8 @@ const Course = () => {
                     <div className="course-content__list">
                         {oneCourse && oneCourse.course_contents && oneCourse.course_contents.length > 0 ? (
                             oneCourse.course_contents.map((item, index) => (
-                                <div className="course-content__item" key={index}
+                                <div className="course-content__item"
+                                     key={index}
                                      onClick={() => navigate(`${CHAPTER_PATH}/${item.id}`)}>
                                     <p>
                                         Глава {index + 1}. {item.chapterName}
@@ -61,7 +65,9 @@ const Course = () => {
                                 </div>
                             ))
                         ) : (
-                            <p>У данного курса не найдено глав!</p>
+                            <p>
+                                У данного курса не найдено глав!
+                            </p>
                         )}
                     </div>
                 </div>
@@ -69,4 +75,5 @@ const Course = () => {
         </section>
     )
 }
-export default Course;
+
+export default Course

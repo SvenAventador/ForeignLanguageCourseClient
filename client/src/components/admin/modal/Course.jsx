@@ -10,7 +10,10 @@ import {
 } from "antd";
 import {useLanguage} from "../../../stores/LanguageStore";
 import {UploadOutlined} from "@ant-design/icons";
-import {create, getAdminAll, update} from "../../../http/course";
+import {
+    create,
+    update
+} from "../../../http/course";
 
 const {Option} = Select;
 
@@ -20,18 +23,19 @@ const CourseFormModal = (props) => {
         oneCourse,
         onOk,
         onCancel
-    } = props;
+    } = props
+
     const [form] = Form.useForm()
     const {getAll} = useLanguage()
 
     const [languageList, setLanguageList] = React.useState([])
     const [courseImage, setCourseImage] = React.useState([])
 
-    const [api, contextHolder] = notification.useNotification();
+    const [api, contextHolder] = notification.useNotification()
 
     React.useEffect(() => {
         getAll().then(({languages}) => {
-            setLanguageList(languages);
+            setLanguageList(languages)
         })
     }, [getAll])
 
@@ -53,7 +57,7 @@ const CourseFormModal = (props) => {
                         status: 'done',
                         url: `${process.env.REACT_APP_API_PATH}${oneCourse.courseImage}`
                     }
-                ]);
+                ])
             }
         } else {
             form.setFieldsValue({
@@ -62,19 +66,26 @@ const CourseFormModal = (props) => {
                 courseLevel: 'Начинающий',
                 language: languageList.length > 0 ? languageList[0].id : undefined,
                 duration: 1
-            });
-            setCourseImage([]);
+            })
+            setCourseImage([])
         }
-    }, [open, oneCourse, form, languageList, onOk]);
+    }, [
+        open,
+        oneCourse,
+        form,
+        languageList,
+        onOk
+    ]);
 
     const handleUpload = ({file}) => {
-        setCourseImage([file]);
-        return false;
+        setCourseImage([file])
+        return false
     }
 
     const handleOk = async () => {
         try {
             const values = await form.validateFields();
+
             if (!courseImage || courseImage.length === 0) {
                 return api.error({
                     message: 'Обратите внимание, тут ошибочка!',
@@ -86,8 +97,9 @@ const CourseFormModal = (props) => {
                 })
             }
 
-            const file = courseImage[0];
-            const allowedExtensions = /\.(png|jpe?g)$/i;
+            const file = courseImage[0]
+            const allowedExtensions = /\.(png|jpe?g)$/i
+
             if (!allowedExtensions.test(file.name)) {
                 return api.error({
                     message: 'Обратите внимание, тут ошибочка!',
@@ -96,16 +108,16 @@ const CourseFormModal = (props) => {
                     style: {
                         width: 600
                     }
-                });
+                })
             }
 
-            const formData = new FormData();
-            formData.append('courseName', values.courseName);
-            formData.append('courseDescription', values.courseDescription);
-            formData.append('courseLevel', values.courseLevel);
-            formData.append('languageId', values.language);
-            formData.append('durationId', values.duration);
-            formData.append('courseImage', courseImage[0]);
+            const formData = new FormData()
+            formData.append('courseName', values.courseName)
+            formData.append('courseDescription', values.courseDescription)
+            formData.append('courseLevel', values.courseLevel)
+            formData.append('languageId', values.language)
+            formData.append('durationId', values.duration)
+            formData.append('courseImage', courseImage[0])
 
             if (oneCourse) {
                 await update(oneCourse.id, formData).then(() => {
@@ -176,22 +188,45 @@ const CourseFormModal = (props) => {
                       autoComplete="off">
                     <Form.Item name="courseName"
                                label="Название курса"
-                               rules={[{required: true, message: 'Пожалуйста, введите название курса!'}]}>
+                               rules={[
+                                   {
+                                       required: true,
+                                       message: 'Пожалуйста, введите название курса!'
+                                   }
+                               ]}>
                         <Input/>
                     </Form.Item>
                     <Form.Item name="courseDescription"
                                label="Описание курса"
-                               rules={[{required: true, message: 'Пожалуйста, введите описание курса!'}]}>
+                               rules={[
+                                   {
+                                       required: true,
+                                       message: 'Пожалуйста, введите описание курса!'
+                                   }
+                               ]}>
                         <Input.TextArea/>
                     </Form.Item>
                     <Form.Item name="courseLevel"
                                label="Уровень курса"
-                               rules={[{required: true, message: 'Пожалуйста, выберите уровень курса!'}]}>
+                               rules={[
+                                   {
+                                       required: true,
+                                       message: 'Пожалуйста, выберите уровень курса!'
+                                   }
+                               ]}>
                         <Select>
-                            <Option value="Начинающий">Начинающий</Option>
-                            <Option value="Элементарный">Элементарный</Option>
-                            <Option value="Средний">Средний</Option>
-                            <Option value="Продвинутый">Продвинутый</Option>
+                            <Option value="Начинающий">
+                                Начинающий
+                            </Option>
+                            <Option value="Элементарный">
+                                Элементарный
+                            </Option>
+                            <Option value="Средний">
+                                Средний
+                            </Option>
+                            <Option value="Продвинутый">
+                                Продвинутый
+                            </Option>
                         </Select>
                     </Form.Item>
                     <Form.Item name="courseImage"
@@ -208,7 +243,8 @@ const CourseFormModal = (props) => {
                                name="language">
                         <Select placeholder="Пожалуйста, выберите иностранный язык">
                             {languageList.map(language => (
-                                <Option key={language.id} value={language.id}>
+                                <Option key={language.id}
+                                        value={language.id}>
                                     {language.languageName}
                                 </Option>
                             ))}
@@ -227,7 +263,8 @@ const CourseFormModal = (props) => {
                                     suffix = 'месяцев';
                                 }
                                 return (
-                                    <Option key={month} value={month}>
+                                    <Option key={month}
+                                            value={month}>
                                         {month} {suffix}
                                     </Option>
                                 )
@@ -246,7 +283,7 @@ const CourseFormModal = (props) => {
                 </Form>
             </Modal>
         </>
-    );
-};
+    )
+}
 
-export default CourseFormModal;
+export default CourseFormModal

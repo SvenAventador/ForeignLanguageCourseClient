@@ -1,23 +1,20 @@
 import React from 'react';
 import {getAllTest} from "../../http/chapter";
 import {
-    Button,
-    Image, notification, Popconfirm, Space,
+    Image,
     Table
 } from "antd";
 import {v4} from "uuid";
 import {SearchOutlined} from "@ant-design/icons";
-import {deleteTest} from "../../http/test";
 
 const Test = () => {
     const [chapters, setChapters] = React.useState([])
-    const [api, contextHolder] = notification.useNotification()
 
     React.useEffect(() => {
         getAllTest().then(({chapters}) => {
             setChapters(chapters)
         })
-    }, [getAllTest])
+    }, [])
 
     const columns = [
         {
@@ -62,7 +59,7 @@ const Test = () => {
                    pagination={false}
             />
         )
-    };
+    }
 
     const customEmptyText = (
         <div>
@@ -72,16 +69,14 @@ const Test = () => {
     )
 
     return (
-        <>
-            {contextHolder}
-            <Table dataSource={chapters.map(chapter => ({...chapter, key: v4()}))}
-                   columns={columns}
-                   expandable={{
-                       expandedRowRender: expandableRowRender,
-                   }}
-                   pagination={{defaultPageSize: 5, showSizeChanger: false}}
-                   locale={{emptyText: customEmptyText}}/>
-        </>
-    );
-};
-export default Test;
+        <Table dataSource={chapters.map(chapter => ({...chapter, key: v4()}))}
+               columns={columns}
+               expandable={{
+                   expandedRowRender: expandableRowRender,
+               }}
+               pagination={{defaultPageSize: 5, showSizeChanger: false}}
+               locale={{emptyText: customEmptyText}}/>
+    )
+}
+
+export default Test

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
 import InputMask from "react-input-mask";
 import {MAIN_PATH} from "../../utils/consts";
+
 const UpdateUserDataForm = () => {
     const {
         user,
@@ -80,56 +81,51 @@ const UpdateUserDataForm = () => {
 
     return (
         <div className="update-user-data-form">
-            <h2 className="update-user-data-form__title">Обновление данных</h2>
+            <h2 className="update-user-data-form__title">
+                Обновление данных
+            </h2>
             <div className="update-user-data-form__form">
                 <label className="update-user-data-form__label">
                     Ваш никнейм:
-                    <input
-                        type="text"
-                        value={userNickname}
-                        onChange={(e) => setUserNickname(e.target.value)}
-                        className="update-user-data-form__input"
-                    />
+                    <input type="text"
+                           value={userNickname}
+                           onChange={(e) => setUserNickname(e.target.value)}
+                           className="update-user-data-form__input"/>
                 </label>
                 <label className="update-user-data-form__label">
                     Ваша почта:
                     <input type="email"
                            value={userEmail}
                            onChange={(e) => setUserEmail(e.target.value)}
-                           className="update-user-data-form__input"
-                    />
+                           className="update-user-data-form__input"/>
                 </label>
                 <label className="update-user-data-form__label">
                     Ваш пароль:
                     <input type="password"
                            value={userPassword}
                            onChange={(e) => setUserPassword(e.target.value)}
-                           className="update-user-data-form__input"
-                    />
+                           className="update-user-data-form__input"/>
                 </label>
                 <label className="update-user-data-form__label">
                     Ваша фамилия:
                     <input type="text"
                            value={userSurname}
                            onChange={(e) => setUserSurname(e.target.value)}
-                           className="update-user-data-form__input"
-                    />
+                           className="update-user-data-form__input"/>
                 </label>
                 <label className="update-user-data-form__label">
                     Ваше имя:
                     <input type="text"
                            value={userName}
                            onChange={(e) => setUserName(e.target.value)}
-                           className="update-user-data-form__input"
-                    />
+                           className="update-user-data-form__input"/>
                 </label>
                 <label className="update-user-data-form__label">
                     Ваше отчество (при наличии):
                     <input type="text"
                            value={userPatronymic}
                            onChange={(e) => setPatronymic(e.target.value)}
-                           className="update-user-data-form__input"
-                    />
+                           className="update-user-data-form__input"/>
                 </label>
                 <label className="update-user-data-form__label">
                     Ваш номер телефона
@@ -138,8 +134,7 @@ const UpdateUserDataForm = () => {
                                value={userPhone}
                                onChange={(e) => setUserPhone(e.target.value)}
                                autoComplete="false"
-                               className="update-user-data-form__input"
-                    />
+                               className="update-user-data-form__input"/>
                 </label>
                 <button className="update-user-data-form__submit-btn"
                         onClick={handleFormSubmit}>
@@ -151,7 +146,7 @@ const UpdateUserDataForm = () => {
                 </button>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default UpdateUserDataForm;
+export default UpdateUserDataForm

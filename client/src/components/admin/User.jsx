@@ -16,7 +16,7 @@ const User = () => {
         getAllUser().then(({response}) => {
             setUser(response)
         })
-    }, [getAllUser])
+    }, [])
 
     const allUser = users.users
     const userCourses = users.userCourses
@@ -69,8 +69,8 @@ const User = () => {
     ]
 
     const expandableCourseRowRender = (record) => {
-        const chapters = allContents.filter((chapter) => chapter.courseId === record.id);
-        const only_test = allTest.filter((test) => chapters.some(chapter => test.courseContentId === chapter.id));
+        const chapters = allContents.filter((chapter) => chapter.courseId === record.id)
+        const only_test = allTest.filter((test) => chapters.some(chapter => test.courseContentId === chapter.id))
 
         const userPassedTestIds = userTest.filter(test => only_test.some(current_test => current_test.id === test.testId))
 
@@ -100,25 +100,24 @@ const User = () => {
                 dataIndex: 'id',
                 key: 'isPassed',
                 render: (chapterId) => {
-                    const isChapterPassed = userPassedTestIds.some(test => test.testId === only_test.find(test => test.courseContentId === chapterId).id);
+                    const isChapterPassed = userPassedTestIds.some(test => test.testId === only_test.find(test => test.courseContentId === chapterId).id)
                     return (
                         isChapterPassed
                             ? <Tag color="green">Пройдена</Tag>
                             : <Tag color="red">Не пройдена</Tag>
-                    );
+                    )
                 }
             }
-        ];
+        ]
 
         return (
-            <Table
-                bordered
-                pagination={false}
-                columns={column}
-                dataSource={chapters}
-                locale={{emptyText: customEmptyText}}
+            <Table bordered
+                   pagination={false}
+                   columns={column}
+                   dataSource={chapters}
+                   locale={{emptyText: customEmptyText}}
             />
-        );
+        )
     }
 
     const expandableUserRowRender = (record) => {
@@ -126,7 +125,7 @@ const User = () => {
             .filter(userCourse => userCourse.userId === record.id)
             .map(userCourse => userCourse.courseId)
 
-        const courses = allCourse?.filter(course => courseIdsForUser.includes(course.id));
+        const courses = allCourse?.filter(course => courseIdsForUser.includes(course.id))
 
         const isAllChaptersPassed = (chapters) => {
             return chapters.every(chapter => {
@@ -178,8 +177,8 @@ const User = () => {
                 title: 'Действие',
                 key: 'action',
                 render: (_, course) => {
-                    const courseChapters = allContents.filter(chapter => chapter.courseId === course.id);
-                    const showCertificateButton = isAllChaptersPassed(courseChapters);
+                    const courseChapters = allContents.filter(chapter => chapter.courseId === course.id)
+                    const showCertificateButton = isAllChaptersPassed(courseChapters)
 
                     if (showCertificateButton) {
                         return (
@@ -196,9 +195,9 @@ const User = () => {
                                             })
                                         }).catch((error) => {
                                             return Swal.fire({
-                                                title: 'УРА УРА УРА!',
+                                                title: 'Внимание!',
                                                 text: error,
-                                                icon: 'success'
+                                                icon: 'error'
                                             })
                                         })
                                     }}>
@@ -207,7 +206,8 @@ const User = () => {
                         );
                     } else {
                         return <Tag color={"red"}>
-                            Главы не все пройдены</Tag>;
+                            Главы не все пройдены
+                        </Tag>
                     }
                 },
             },
@@ -251,7 +251,7 @@ const User = () => {
                locale={{
                    emptyText: customEmptyText
                }}/>
-    );
-};
+    )
+}
 
 export default User;

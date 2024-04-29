@@ -10,7 +10,7 @@ const Courses = () => {
                 <CourseList />
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Courses;
+export default Courses

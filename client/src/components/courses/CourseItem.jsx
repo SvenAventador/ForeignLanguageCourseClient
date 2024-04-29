@@ -47,9 +47,9 @@ const CourseItem = ({course}) => {
                                 })
                             }
                         } catch (error) {
-                            let errorMessage = 'Произошла ошибка при записи на курса. Пожалуйста, попробуйте еще раз.';
+                            let errorMessage = 'Произошла ошибка при записи на курса. Пожалуйста, попробуйте еще раз.'
                             if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
-                                const errors = error.response.data.message.errors;
+                                const errors = error.response.data.message.errors
                                 errorMessage = errors.map(err => err.msg).join('\n');
                             }
 
@@ -62,16 +62,29 @@ const CourseItem = ({course}) => {
                     }}>
                 Записаться на курс
             </button>
-            <ModalComponent active={modalActive} setActive={setModalActive}>
-                <p className="course-info__header">Информация о курсе</p>
-                <p className="course-info__detail">Название курса: {course.courseName}</p>
-                <p className="course-info__detail">Описание курса: {course.courseDescription}</p>
-                <p className="course-info__detail">Продолжительность курса: {course.duration.durationValue}</p>
-                <p className="course-info__detail">Выбранный иностранный язык курса: {course.language.languageName}</p>
-                <p className="course-info__detail">Уровень данного курса: {course.courseLevel}</p>
+            <ModalComponent active={modalActive}
+                            setActive={setModalActive}>
+                <p className="course-info__header">
+                    Информация о курсе
+                </p>
+                <p className="course-info__detail">
+                    Название курса: {course.courseName}
+                </p>
+                <p className="course-info__detail">
+                    Описание курса: {course.courseDescription}
+                </p>
+                <p className="course-info__detail">
+                    Продолжительность курса: {course.duration.durationValue}
+                </p>
+                <p className="course-info__detail">
+                    Выбранный иностранный язык курса: {course.language.languageName}
+                </p>
+                <p className="course-info__detail">
+                    Уровень данного курса: {course.courseLevel}
+                </p>
             </ModalComponent>
         </div>
-    );
-};
+    )
+}
 
-export default CourseItem;
+export default CourseItem

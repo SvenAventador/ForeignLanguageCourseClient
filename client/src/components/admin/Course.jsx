@@ -2,7 +2,8 @@ import React from 'react';
 import {
     deleteAll,
     deleteOne,
-    getAdminAll, getOne
+    getAdminAll,
+    getOne
 } from "../../http/course";
 import {
     deleteOne as deleteOneChapter,
@@ -36,7 +37,7 @@ const Course = () => {
         getAdminAll().then(({courses}) => {
             setCourseList(courses)
         })
-    }, [getAdminAll])
+    }, [])
 
     const columns = [
         {
@@ -397,7 +398,7 @@ const Course = () => {
                          onOk={handleCourseOk}
                          onCancel={handleCourseCancel}/>
         </>
-    );
-};
+    )
+}
 
-export default Course;
+export default Course

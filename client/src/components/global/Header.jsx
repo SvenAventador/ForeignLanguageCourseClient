@@ -16,7 +16,9 @@ const Header = () => {
     const {
         user
     } = useUser()
+
     const navigate = useNavigate()
+
     return (
         <header className="header">
             <div className="header__container">
@@ -28,22 +30,26 @@ const Header = () => {
                 <nav className="header__navigation">
                     <ul className="navigation__list">
                         <li className="navigation__item">
-                            <NavLink to={COURSES_PATH} className="navigation__link">
+                            <NavLink to={COURSES_PATH}
+                                     className="navigation__link">
                                 наши курсы
                             </NavLink>
                         </li>
                         <li className="navigation__item">
-                            <NavLink to="/" className="navigation__link">
+                            <NavLink to="/"
+                                     className="navigation__link">
                                 о нас
                             </NavLink>
                         </li>
                         <li className="navigation__item">
-                            <NavLink to="/" className="navigation__link">
+                            <NavLink to="/"
+                                     className="navigation__link">
                                 результаты
                             </NavLink>
                         </li>
                         <li className="navigation__item">
-                            <NavLink to="/" className="navigation__link">
+                            <NavLink to="/"
+                                     className="navigation__link">
                                 контакты
                             </NavLink>
                         </li>
@@ -53,15 +59,16 @@ const Header = () => {
                 <div className="header__user"
                      onClick={() =>
                          user ? navigate(`${PERSONAL_PATH}/${user.id}`)
-                             : navigate(LOGIN_PATH)
+                              : navigate(LOGIN_PATH)
                      }>
                     <Auth width={35}
                           height={35}/>
-                    <span>{user ? user.userNickname : 'Войти'}</span>
+                    <span>{user ? user.userNickname
+                                : 'Войти'}</span>
                 </div>
             </div>
         </header>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header

@@ -9,7 +9,7 @@ const ModalComponent = ({active, setActive, children}) => {
                 {children}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default ModalComponent;
+export default ModalComponent

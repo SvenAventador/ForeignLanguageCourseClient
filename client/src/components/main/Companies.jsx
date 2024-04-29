@@ -83,20 +83,26 @@ const Companies = () => {
         <section className="companies">
             <div className="companies__container">
                 <div className="companies__title">
-                    <h2>Нас рекомендуют</h2>
+                    <h2>
+                        Нас рекомендуют
+                    </h2>
                 </div>
                 <div className="companies__icon">
                     {companiesData.map((company, index) => {
                         return (
-                            <NavLink key={index} to={company.link} target="_blank" rel="noopener noreferrer">
-                                <img src={company.src} alt={company.alt}/>
+                            <NavLink key={index}
+                                     to={company.link}
+                                     target="_blank"
+                                     rel="noopener noreferrer">
+                                <img src={company.src}
+                                     alt={company.alt}/>
                             </NavLink>
                         )
                     })}
                 </div>
             </div>
         </section>
-    );
-};
+    )
+}
 
-export default Companies;
+export default Companies

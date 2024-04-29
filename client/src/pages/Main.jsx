@@ -10,7 +10,7 @@ const Main = () => {
             <Result />
             <Companies />
         </>
-    );
-};
+    )
+}
 
-export default Main;
+export default Main

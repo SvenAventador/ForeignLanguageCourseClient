@@ -26,14 +26,17 @@ import User from "../../components/admin/User";
 const AdminPanel = () => {
     const history = useNavigate()
     const [collapsed, setCollapsed] = React.useState(false)
+
     const toggleCollapsed = () => {
         setCollapsed(!collapsed)
     }
+
     const [selectedMenuItem, setSelectedMenuItem] = React.useState('language')
 
     let {
         logoutUser
     } = useUser()
+
     const handleLogout = () => {
         logoutUser().then(() => {
             Swal.fire({
@@ -42,7 +45,7 @@ const AdminPanel = () => {
                 icon: "success"
             }).then(() => {
                 history(MAIN_PATH);
-            });
+            })
         })
     }
 
@@ -52,7 +55,7 @@ const AdminPanel = () => {
             key,
             icon,
             onClick
-        };
+        }
     }
 
     const items = [
@@ -99,7 +102,7 @@ const AdminPanel = () => {
                 </Layout.Content>
             </Layout>
         </Layout>
-    );
-};
+    )
+}
 
-export default AdminPanel;
+export default AdminPanel

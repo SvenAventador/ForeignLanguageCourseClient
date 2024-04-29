@@ -82,22 +82,22 @@ const CoursesTable = ({id}) => {
 
         const chaptersData = record.course_contents.map((chapter) => {
             const onlyTest = statistics?.test.find((test) => test.courseContentId === chapter.id)
-            const userTest = statistics?.userTest.find((test) => test.testId === onlyTest?.id);
+            const userTest = statistics?.userTest.find((test) => test.testId === onlyTest?.id)
             return {
                 ...chapter,
                 key: chapter.id,
                 isComplete: userTest && userTest.isComplete && userTest.testResult !== 0,
                 testResult: userTest ? userTest.testResult : 0,
-            };
-        });
+            }
+        })
 
         return (
             <Table columns={chaptersColumns}
                    dataSource={chaptersData}
                    pagination={false}
             />
-        );
-    };
+        )
+    }
 
     const customEmptyText = (
         <div>
@@ -131,4 +131,4 @@ const CoursesTable = ({id}) => {
     )
 }
 
-export default CoursesTable;
+export default CoursesTable

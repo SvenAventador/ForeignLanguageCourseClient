@@ -29,6 +29,15 @@ const Auth = () => {
 
     const registration = (event) => {
         event.preventDefault()
+
+        if (userPassword !== confirmPassword) {
+            return Swal.fire({
+                title: 'Опачки!',
+                text: 'Пароли не совпадают!',
+                icon: 'error'
+            })
+        }
+
         registrationUser(userNickname, userEmail, userPassword)
             .then(() => {
                 Swal.fire({
@@ -40,9 +49,9 @@ const Auth = () => {
                 })
             })
             .catch((error) => {
-                let errorMessage = 'Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз.';
+                let errorMessage = 'Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз.'
                 if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
-                    const errors = error.response.data.message.errors;
+                    const errors = error.response.data.message.errors
                     errorMessage = errors.map(err => err.msg).join('\n');
                 }
 
@@ -50,8 +59,8 @@ const Auth = () => {
                     title: 'Опачки!',
                     text: errorMessage,
                     icon: 'error'
-                });
-            });
+                })
+            })
     }
 
     const login = (event) => {
@@ -66,17 +75,17 @@ const Auth = () => {
                 });
             })
             .catch((error) => {
-                let errorMessage = 'Произошла ошибка при авторизации. Пожалуйста, попробуйте еще раз.';
+                let errorMessage = 'Произошла ошибка при авторизации. Пожалуйста, попробуйте еще раз.'
                 if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
-                    const errors = error.response.data.message.errors;
-                    errorMessage = errors.map(err => err.msg).join('\n');
+                    const errors = error.response.data.message.errors
+                    errorMessage = errors.map(err => err.msg).join('\n')
                 }
                 return Swal.fire({
                     title: 'Опачки!',
                     text: errorMessage,
                     icon: 'error'
-                });
-            });
+                })
+            })
     }
 
     return (
@@ -84,7 +93,9 @@ const Auth = () => {
             <form className="auth__form"
                   onSubmit={registration}>
                 <div className="auth__form--title">
-                    <h1>{location ? 'Авторизация' : 'Регистрация'}</h1>
+                    <h1>
+                        {location ? 'Авторизация' : 'Регистрация'}
+                    </h1>
                 </div>
                 {
                     !location && (
@@ -153,7 +164,7 @@ const Auth = () => {
                 </NavLink>
             </form>
         </section>
-    );
-};
+    )
+}
 
-export default Auth;
+export default Auth

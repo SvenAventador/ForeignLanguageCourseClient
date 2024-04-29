@@ -6,6 +6,7 @@ import CertificateTable from "../../components/personal/CertificateTable";
 
 const PersonalAccount = () => {
     const {id} = useParams()
+
     return (
         <section className="personal">
             <div className="personal__container">
@@ -18,7 +19,7 @@ const PersonalAccount = () => {
                 <UpdateUserDataForm/>
             </div>
         </section>
-    );
-};
+    )
+}
 
-export default PersonalAccount;
+export default PersonalAccount

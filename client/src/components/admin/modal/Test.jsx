@@ -1,19 +1,33 @@
-import React, {useState} from 'react';
-import {Modal, Form, Input, Radio, Button, notification} from 'antd';
+import React from 'react';
+import {
+    Modal,
+    Form,
+    Input,
+    Radio,
+    Button,
+    notification
+} from 'antd';
 import {create} from "../../../http/test";
 
-const TestFormModal = ({open, id, onCancel}) => {
-    const [questions, setQuestions] = useState([]);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+const TestFormModal = (props) => {
+    const {
+        open,
+        id,
+        onCancel,
+        onOk
+    } = props
+
+    const [questions, setQuestions] = React.useState([]);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
     const [testName, setTestName] = React.useState('')
-    const [currentQuestion, setCurrentQuestion] = useState({
+    const [currentQuestion, setCurrentQuestion] = React.useState({
         question: '',
         answers: ['', '', '', ''],
         correctIndex: 0
-    });
+    })
 
     const [api, contextHolder] = notification.useNotification()
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = React.useState(false);
 
 
     const handleAddQuestion = () => {
@@ -26,13 +40,15 @@ const TestFormModal = ({open, id, onCancel}) => {
                     question: '',
                     answers: ['', '', '', ''],
                     correctIndex: 0
-                });
-                setIsEditing(false);
+                })
+
+                setIsEditing(false)
+
                 if (updatedQuestions.length >= 21) {
                     const formData = prepareFormData()
-
                     create(formData)
-                        .then(response => {
+                        .then(() => {
+                            onOk()
                             api.success({
                                 message: 'Опачки!',
                                 description: 'Тест успешно создан!',
@@ -41,16 +57,18 @@ const TestFormModal = ({open, id, onCancel}) => {
                                     width: 600
                                 }
                             })
-                        }).catch((error) => {
-                        api.error({
-                            message: 'Обратите внимание, тут ошибочка!',
-                            description: error,
-                            className: 'custom-class',
-                            style: {
-                                width: 600
-                            }
                         })
-                    })
+                        .catch((error) => {
+                                api.error({
+                                    message: 'Обратите внимание, тут ошибочка!',
+                                    description: error,
+                                    className: 'custom-class',
+                                    style: {
+                                        width: 600
+                                    }
+                                })
+                            }
+                        )
                 }
             }
         }
@@ -58,16 +76,16 @@ const TestFormModal = ({open, id, onCancel}) => {
 
     const handleSaveQuestionChanges = () => {
         setQuestions(prevQuestions => {
-            const updatedQuestions = [...prevQuestions];
-            updatedQuestions[currentQuestionIndex] = currentQuestion;
-            setIsEditing(false);
-            return updatedQuestions;
-        });
-    };
+            const updatedQuestions = [...prevQuestions]
+            updatedQuestions[currentQuestionIndex] = currentQuestion
+            setIsEditing(false)
+            return updatedQuestions
+        })
+    }
 
     const handleNextQuestion = () => {
         if (isEditing) {
-            handleSaveQuestionChanges();
+            handleSaveQuestionChanges()
         }
 
         if (currentQuestionIndex < questions.length) {
@@ -77,11 +95,11 @@ const TestFormModal = ({open, id, onCancel}) => {
                 question: '',
                 answers: ['', '', '', ''],
                 correctIndex: 0
-            });
+            })
         } else {
             handleAddQuestion();
         }
-    };
+    }
 
     const handlePreviousQuestion = () => {
         if (isEditing) {
@@ -93,13 +111,7 @@ const TestFormModal = ({open, id, onCancel}) => {
             setCurrentQuestion(questions[prevIndex]);
             setCurrentQuestionIndex(prevIndex);
         }
-    };
-
-    const handleEditQuestion = (index) => {
-        setIsEditing(true);
-        setCurrentQuestionIndex(index);
-        setCurrentQuestion(questions[index]);
-    };
+    }
 
     const prepareFormData = () => {
         const formData = {
@@ -107,7 +119,7 @@ const TestFormModal = ({open, id, onCancel}) => {
             courseContentId: id,
             questions: [],
             answers: []
-        };
+        }
 
         questions.forEach(question => {
             formData.questions.push(question.question);
@@ -116,10 +128,10 @@ const TestFormModal = ({open, id, onCancel}) => {
                 answers.push({
                     answer: answer,
                     isCorrect: index === question.correctIndex
-                });
-            });
+                })
+            })
             formData.answers.push(answers);
-        });
+        })
 
         return formData
     };
@@ -154,19 +166,30 @@ const TestFormModal = ({open, id, onCancel}) => {
                                    backgroundColor: 'green',
                                    color: "#FFF"
                                }}>
-                           {questions.length >= 20 || (isEditing && currentQuestionIndex < questions.length) ? 'Завершить редактирование' : currentQuestionIndex < questions.length ? 'Следующий' : 'Добавить'}
+                           {questions.length >= 21 || (isEditing && currentQuestionIndex < questions.length) ? 'Завершить редактирование' : currentQuestionIndex < questions.length ? 'Следующий' : 'Добавить'}
                        </Button>
                    ]}>
                 <Form>
                     <Form.Item label={'Название теста'}
                                required
-                               rules={[{required: true, message: 'Введите название теста'}]}>
+                               rules={[
+                                   {
+                                       required: true,
+                                       message: 'Введите название теста'
+                                   }
+                               ]}>
                         <Input value={testName}
                                onChange={e => setTestName(e.target.value)}/>
                     </Form.Item>
-                    <Form.Item label={`Вопрос`}
-                               required
-                               rules={[{required: true, message: 'Введите название вопроса'}]}>
+                    <Form.Item
+                        label={`${questions.length < 20 ? `Вопрос №${questions.length + 1}` : `Последний вопрос`}`}
+                        required
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Введите название вопроса'
+                            }
+                        ]}>
                         <Input value={currentQuestion.question}
                                onChange={e => setCurrentQuestion({...currentQuestion, question: e.target.value})}
                                disabled={questions.length === 21}/>
@@ -176,21 +199,31 @@ const TestFormModal = ({open, id, onCancel}) => {
                             <Form.Item key={index}
                                        label={`Ответ ${index + 1}`}
                                        required
-                                       rules={[{required: true, message: 'Введите ответ к вопросу'}]}>
+                                       rules={[
+                                           {
+                                               required: true,
+                                               message: 'Введите ответ к вопросу'
+                                           }
+                                       ]}>
                                 <Input value={answer}
                                        onChange={e => {
-                                           const updatedAnswers = [...currentQuestion.answers];
-                                           updatedAnswers[index] = e.target.value;
-                                           setCurrentQuestion({...currentQuestion, answers: updatedAnswers});
+                                           const updatedAnswers = [...currentQuestion.answers]
+                                           updatedAnswers[index] = e.target.value
+                                           setCurrentQuestion({...currentQuestion, answers: updatedAnswers})
                                        }}
                                        disabled={questions.length === 21}
                                 />
                             </Form.Item>
-                        );
+                        )
                     })}
                     <Form.Item label="Выберите правильный ответ"
                                required
-                               rules={[{required: true, message: 'Выберите правильный ответ'}]}>
+                               rules={[
+                                   {
+                                       required: true,
+                                       message: 'Выберите правильный ответ'
+                                   }
+                               ]}>
                         <Radio.Group value={currentQuestion.correctIndex}
                                      onChange={e => setCurrentQuestion({
                                          ...currentQuestion,
@@ -209,7 +242,7 @@ const TestFormModal = ({open, id, onCancel}) => {
                 </Form>
             </Modal>
         </>
-    );
-};
+    )
+}
 
-export default TestFormModal;
+export default TestFormModal

@@ -39,7 +39,7 @@ const App = () => {
 
     return (
         <SiteNavigation/>
-    );
-};
+    )
+}
 
-export default App;
+export default App

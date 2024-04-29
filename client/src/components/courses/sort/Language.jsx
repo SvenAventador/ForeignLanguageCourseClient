@@ -37,7 +37,7 @@ const Language = () => {
                 Очистить выборку
             </button>
         </div>
-    );
-};
+    )
+}
 
-export default Language;
+export default Language

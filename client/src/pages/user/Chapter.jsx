@@ -28,7 +28,6 @@ const Chapter = () => {
                 <div className="chapter__title">
                     {oneChapter.chapterName}
                 </div>
-
                 {
                     oneChapter.chapter_contents && oneChapter.chapter_contents.map((item, index) => (
                         <div className="chapter__list" key={index}>
@@ -36,21 +35,18 @@ const Chapter = () => {
                         </div>
                     ))
                 }
-
                 {
                     oneChapter &&
                     oneChapter.chapter_galleries &&
                     <ChapterVideo chapter_video={oneChapter.chapter_galleries}/>
                 }
-
                 <button className="btn-reset chapter__btn"
                         onClick={() => navigate(`${TEST_PATH}/${id}`)}>
                     Перейти к тесту!
                 </button>
-
             </div>
         </section>
-    );
-};
+    )
+}
 
-export default Chapter;
+export default Chapter

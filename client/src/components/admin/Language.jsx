@@ -111,7 +111,7 @@ const Language = () => {
                            onOk={handleOk}
                            onCancel={handleCancel}/>
         </>
-    );
-};
+    )
+}
 
-export default Language;
+export default Language

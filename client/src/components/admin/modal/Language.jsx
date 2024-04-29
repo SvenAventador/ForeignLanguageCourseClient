@@ -1,5 +1,10 @@
 import React from 'react';
-import {Button, Input, Modal, notification} from "antd";
+import {
+    Button,
+    Input,
+    Modal,
+    notification
+} from "antd";
 import {useLanguage} from "../../../stores/LanguageStore";
 import Swal from "sweetalert2";
 
@@ -10,14 +15,18 @@ const LanguageModal = (props) => {
         onOk,
         onCancel
     } = props
+
     const [api, contextHolder] = notification.useNotification()
+
     let {
         create,
         update
     } = useLanguage()
+
     const clearData = () => setLanguageName('')
 
     const [languageName, setLanguageName] = React.useState('')
+
     React.useEffect(() => {
         if (oneLanguage)
             setLanguageName(oneLanguage?.languageName)
@@ -25,7 +34,7 @@ const LanguageModal = (props) => {
             setLanguageName('')
     }, [oneLanguage])
 
-    const addLanguage = async () => {
+    const addLanguage = () => {
         if (languageName === '')
             return api.error({
                 message: 'Обратите внимание, тут ошибочка!',
@@ -124,11 +133,10 @@ const LanguageModal = (props) => {
                 <Input value={languageName}
                        onChange={(e) => setLanguageName(e.target.value)}
                        style={{marginBottom: '1rem'}}
-                       placeholder="Введите название иностранного языка..."
-                />
+                       placeholder="Введите название иностранного языка..."/>
             </Modal>
         </>
-    );
-};
+    )
+}
 
-export default LanguageModal;
+export default LanguageModal
