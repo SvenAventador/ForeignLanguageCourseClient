@@ -35,24 +35,6 @@ const Header = () => {
                                 наши курсы
                             </NavLink>
                         </li>
-                        <li className="navigation__item">
-                            <NavLink to="/"
-                                     className="navigation__link">
-                                о нас
-                            </NavLink>
-                        </li>
-                        <li className="navigation__item">
-                            <NavLink to="/"
-                                     className="navigation__link">
-                                результаты
-                            </NavLink>
-                        </li>
-                        <li className="navigation__item">
-                            <NavLink to="/"
-                                     className="navigation__link">
-                                контакты
-                            </NavLink>
-                        </li>
                     </ul>
                 </nav>
 

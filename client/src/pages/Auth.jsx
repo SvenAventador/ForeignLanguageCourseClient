@@ -18,9 +18,21 @@ const Auth = () => {
     const navigate = useNavigate()
 
     const [userNickname, setUserNickname] = React.useState('')
+    const handleUserNicknameChange = (e) => {
+        const value = e.target.value.replace(/\s/g, '')
+        setUserNickname(value)
+    }
     const [userEmail, setUserEmail] = React.useState('')
     const [userPassword, setUserPassword] = React.useState('')
+    const handleUserPasswordChange = (e) => {
+        const value = e.target.value.replace(/\s/g, '')
+        setUserPassword(value)
+    }
     const [confirmPassword, setConfirmPassword] = React.useState('')
+    const handleConfirmPasswordChange = (e) => {
+        const value = e.target.value.replace(/\s/g, '')
+        setConfirmPassword(value)
+    }
 
     const {
         registrationUser,
@@ -105,7 +117,7 @@ const Auth = () => {
                                    required
                                    autoComplete="off"
                                    value={userNickname}
-                                   onChange={(e) => setUserNickname(e.target.value)}/>
+                                   onChange={handleUserNicknameChange}/>
                             <label htmlFor="username">Введите Ваш никнейм</label>
                         </div>
                     )
@@ -125,7 +137,7 @@ const Auth = () => {
                            required
                            autoComplete="off"
                            value={userPassword}
-                           onChange={(e) => setUserPassword(e.target.value)}/>
+                           onChange={handleUserPasswordChange}/>
                     <label htmlFor="password">Введите пароль</label>
                 </div>
                 {
@@ -136,7 +148,7 @@ const Auth = () => {
                                    required
                                    autoComplete="off"
                                    value={confirmPassword}
-                                   onChange={(e) => setConfirmPassword(e.target.value)}/>
+                                   onChange={handleConfirmPasswordChange}/>
                             <label htmlFor="confirmPassword">Повторите пароль</label>
                         </div>
                     )
