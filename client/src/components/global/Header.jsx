@@ -41,12 +41,12 @@ const Header = () => {
                 <div className="header__user"
                      onClick={() =>
                          user ? navigate(`${PERSONAL_PATH}/${user.id}`)
-                              : navigate(LOGIN_PATH)
+                             : navigate(LOGIN_PATH)
                      }>
                     <Auth width={35}
                           height={35}/>
                     <span>{user ? user.userNickname
-                                : 'Войти'}</span>
+                        : 'Войти'}</span>
                 </div>
             </div>
         </header>

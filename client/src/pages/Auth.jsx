@@ -117,6 +117,7 @@ const Auth = () => {
                                    required
                                    autoComplete="off"
                                    value={userNickname}
+                                   maxLength={50}
                                    onChange={handleUserNicknameChange}/>
                             <label htmlFor="username">Введите Ваш никнейм</label>
                         </div>
@@ -127,6 +128,7 @@ const Auth = () => {
                            type="text"
                            required
                            autoComplete="off"
+                           maxLength={150}
                            value={userEmail}
                            onChange={(e) => setUserEmail(e.target.value)}/>
                     <label htmlFor="email">Введите Вашу почту</label>
@@ -135,6 +137,7 @@ const Auth = () => {
                     <input name="password"
                            type="password"
                            required
+                           maxLength={30}
                            autoComplete="off"
                            value={userPassword}
                            onChange={handleUserPasswordChange}/>
@@ -147,6 +150,7 @@ const Auth = () => {
                                    type="password"
                                    required
                                    autoComplete="off"
+                                   maxLength={30}
                                    value={confirmPassword}
                                    onChange={handleConfirmPasswordChange}/>
                             <label htmlFor="confirmPassword">Повторите пароль</label>

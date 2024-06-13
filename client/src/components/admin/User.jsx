@@ -244,10 +244,7 @@ const User = () => {
                expandable={{
                    expandedRowRender: expandableUserRowRender,
                }}
-               pagination={{
-                   defaultPageSize: 1,
-                   showSizeChanger: false
-               }}
+               pagination={false}
                locale={{
                    emptyText: customEmptyText
                }}/>

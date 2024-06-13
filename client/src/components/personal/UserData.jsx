@@ -42,6 +42,18 @@ const UpdateUserDataForm = () => {
                 title: 'Внимение!',
                 text: "Минимальная длина пароля 8 символов!"
             })
+        if (userSurname === '')
+            return Swal.fire({
+                icon: 'error',
+                title: 'Внимение!',
+                text: "Пожалуйста, ввведите Вашу фамилию!"
+            })
+         if (userSurname === '')
+             return Swal.fire({
+                 icon: 'error',
+                 title: 'Внимение!',
+                 text: "Пожалуйста, ввведите Ваше имя!"
+             })
 
         updateUser(
             user.id,
@@ -79,6 +91,13 @@ const UpdateUserDataForm = () => {
         })
     }
 
+    const handleKeyPress = (e) => {
+        const charCode = e.charCode;
+        if ((charCode >= 48 && charCode <= 57) || charCode === 32) {
+            e.preventDefault();
+        }
+    };
+
     return (
         <div className="update-user-data-form">
             <h2 className="update-user-data-form__title">
@@ -110,6 +129,7 @@ const UpdateUserDataForm = () => {
                     Ваша фамилия:
                     <input type="text"
                            value={userSurname}
+                           onKeyPress={handleKeyPress}
                            onChange={(e) => setUserSurname(e.target.value)}
                            className="update-user-data-form__input"/>
                 </label>
@@ -117,6 +137,7 @@ const UpdateUserDataForm = () => {
                     Ваше имя:
                     <input type="text"
                            value={userName}
+                           onKeyPress={handleKeyPress}
                            onChange={(e) => setUserName(e.target.value)}
                            className="update-user-data-form__input"/>
                 </label>
@@ -124,6 +145,7 @@ const UpdateUserDataForm = () => {
                     Ваше отчество (при наличии):
                     <input type="text"
                            value={userPatronymic}
+                           onKeyPress={handleKeyPress}
                            onChange={(e) => setPatronymic(e.target.value)}
                            className="update-user-data-form__input"/>
                 </label>
